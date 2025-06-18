@@ -29,7 +29,9 @@ func (c MemoryConfiguration) Bytes() []byte {
 		byte(c.FileType),
 		byte(c.KeyboardProtectionStatus),
 	}
-	bytes = append(bytes, c.FileSize.Bytes()...)
+	if c.FileSize != nil {
+		bytes = append(bytes, c.FileSize.Bytes()...)
+	}
 	if c.Suffix != nil {
 		bytes = append(bytes, (*c.Suffix).Bytes()...)
 	} else {
@@ -47,10 +49,10 @@ func (c DotsPictureSize) Bytes() []byte {
 	return []byte(fmt.Sprintf("%2X%2X", c.Rows, c.Cols))
 }
 
-type FileSize uint16
+type StringFileSize struct{}
 
-func (fs FileSize) Bytes() []byte {
-	return []byte(fmt.Sprintf("%4X", fs))
+func (fs StringFileSize) Bytes() []byte {
+	return []byte("0000")
 }
 
 type TimeOfDay struct {
