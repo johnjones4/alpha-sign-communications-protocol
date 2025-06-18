@@ -2,7 +2,6 @@ package alphasign
 
 import (
 	"fmt"
-	"log"
 )
 
 type WriteSpecialFunctionCommand struct {
@@ -20,7 +19,6 @@ func (c *WriteSpecialFunctionCommand) Bytes() []byte {
 	for _, d := range c.Data {
 		out = append(out, d.Bytes()...)
 	}
-	log.Println(string(out))
 	return out
 }
 
