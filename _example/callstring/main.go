@@ -19,7 +19,6 @@ func main() {
 				FileType:                 alphasign.TextFile,
 				KeyboardProtectionStatus: 'U',
 				FileSize:                 alphasign.FileSize(1024),
-				Suffix: ,
 			},
 			alphasign.MemoryConfiguration{
 				FileLabel:                '1',
@@ -52,5 +51,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	
+
 }
