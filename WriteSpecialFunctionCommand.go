@@ -1,6 +1,9 @@
 package alphasign
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
 type WriteSpecialFunctionCommand struct {
 	Label SpecialFunctionsLabel
@@ -12,10 +15,14 @@ func (c *WriteSpecialFunctionCommand) CommandCode() CommandCode {
 }
 
 func (c *WriteSpecialFunctionCommand) Bytes() []byte {
+	var out []byte
 	if c.Data == nil {
-		return c.Label
+		out = c.Label
+	} else {
+		out = append(c.Label, c.Data.Bytes()...)
 	}
-	return append(c.Label, c.Data.Bytes()...)
+	log.Println(string(out))
+	return out
 }
 
 type MemoryConfiguration struct {
