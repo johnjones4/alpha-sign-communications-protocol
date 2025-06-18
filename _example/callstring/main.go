@@ -13,6 +13,13 @@ func main() {
 	}
 	err = sign.Send(&alphasign.WriteSpecialFunctionCommand{
 		Label: alphasign.ClearOrSetMemoryConfig,
+		Data:  nil,
+	})
+	if err != nil {
+		panic(err)
+	}
+	err = sign.Send(&alphasign.WriteSpecialFunctionCommand{
+		Label: alphasign.ClearOrSetMemoryConfig,
 		Data: alphasign.MemoryConfiguration{
 			FileLabel:                'A',
 			FileType:                 alphasign.TextFile,
