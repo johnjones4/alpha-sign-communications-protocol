@@ -5,6 +5,47 @@ const (
 	STX ControlCharacter = 0x02
 	EOT ControlCharacter = 0x04
 	ESC ControlCharacter = 0x1B
+
+	Off ControlCharacter = 0x30
+	On  ControlCharacter = 0x31
+
+	DoubleHeightControl   ControlCharacter = 0x05
+	TrueDescendersControl ControlCharacter = 0x06
+	CharacterFlashControl ControlCharacter = 0x07
+
+	ExtendedCharacterSets ControlCharacter = 0x08
+
+	Celsius    ControlCharacter = 0x1C
+	Fahrenheit ControlCharacter = 0x1D
+
+	NoHoldSpeed ControlCharacter = 0x09
+
+	CallDate              ControlCharacter = 0x0B
+	DateMMDDYYWithSlashes ControlCharacter = 0x30
+	DateDDMMYYWithSlashes ControlCharacter = 0x31
+	DateMMDDYYWithDashes  ControlCharacter = 0x32
+	DateDDMMYYWithDashes  ControlCharacter = 0x33
+	DateMMDDYYWithDots    ControlCharacter = 0x34
+	DateDDMMYYWithDots    ControlCharacter = 0x35
+	DateMMDDYYWithSpaces  ControlCharacter = 0x36
+	DateDDMMYYWithSpaces  ControlCharacter = 0x37
+	DateMMMDDYYYY         ControlCharacter = 0x38
+	DateDayOfWeek         ControlCharacter = 0x39
+
+	NewPage               ControlCharacter = 0x0C
+	NewLine               ControlCharacter = 0x0D
+	SpeedControl          ControlCharacter = 0x0F
+	CallString            ControlCharacter = 0x10
+	DisableWideCharacters ControlCharacter = 0x11
+	EnableWideCharacters  ControlCharacter = 0x12
+	CallTime              ControlCharacter = 0x13
+	CallSmallDotsPicture  ControlCharacter = 0x14
+
+	Speed1 ControlCharacter = 0x15
+	Speed2 ControlCharacter = 0x16
+	Speed3 ControlCharacter = 0x17
+	Speed4 ControlCharacter = 0x18
+	Speed5 ControlCharacter = 0x19
 )
 
 const (

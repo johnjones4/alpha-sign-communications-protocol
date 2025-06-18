@@ -13,7 +13,11 @@ func main() {
 	}
 	err = sign.Send(alphasign.WriteTextCommand{
 		FileLabel: 'A',
-		Message:   []byte("Jack Jones"),
+		Mode: &alphasign.TextMode{
+			DisplayPosition: alphasign.Fill,
+			ModeCode:        alphasign.Scroll,
+		},
+		Message: append([]byte{0x1C, 0x31}, []byte("Hello World!")...),
 	})
 	if err != nil {
 		panic(err)
