@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"time"
 
 	alphasign "github.com/johnjones4/alpha-sign-communications-protocol"
 )
@@ -46,7 +47,17 @@ func main() {
 
 	err = sign.Send(alphasign.WriteStringCommand{
 		FileLabel: '1',
-		FileData:  []byte("Hello World File Test!"),
+		FileData:  []byte("First Message"),
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	time.Sleep(time.Second * 10)
+
+	err = sign.Send(alphasign.WriteStringCommand{
+		FileLabel: '1',
+		FileData:  []byte("First Message"),
 	})
 	if err != nil {
 		panic(err)
