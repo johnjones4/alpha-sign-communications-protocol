@@ -7,7 +7,7 @@ import (
 
 type WriteSpecialFunctionCommand struct {
 	Label SpecialFunctionsLabel
-	Data  Bytes
+	Data  []Bytes
 }
 
 func (c *WriteSpecialFunctionCommand) CommandCode() CommandCode {
@@ -16,10 +16,9 @@ func (c *WriteSpecialFunctionCommand) CommandCode() CommandCode {
 
 func (c *WriteSpecialFunctionCommand) Bytes() []byte {
 	var out []byte
-	if c.Data == nil {
-		out = c.Label
-	} else {
-		out = append(c.Label, c.Data.Bytes()...)
+	out = append(out, c.Label...)
+	for _, d := range c.Data {
+		out = append(c.Label, d.Bytes()...)
 	}
 	log.Println(string(out))
 	return out
@@ -30,7 +29,7 @@ type MemoryConfiguration struct {
 	FileType                 FileType
 	KeyboardProtectionStatus KeyboardProtectionStatus
 	FileSize                 Bytes
-	Suffix                   *Bytes
+	Suffix                   Bytes
 }
 
 func (c MemoryConfiguration) Bytes() []byte {
@@ -43,7 +42,7 @@ func (c MemoryConfiguration) Bytes() []byte {
 		bytes = append(bytes, c.FileSize.Bytes()...)
 	}
 	if c.Suffix != nil {
-		bytes = append(bytes, (*c.Suffix).Bytes()...)
+		bytes = append(bytes, c.Suffix.Bytes()...)
 	} else {
 		bytes = append(bytes, []byte("0000")...)
 	}
@@ -59,10 +58,10 @@ func (c DotsPictureSize) Bytes() []byte {
 	return []byte(fmt.Sprintf("%2X%2X", c.Rows, c.Cols))
 }
 
-type StringFileSize struct{}
+type FileSize uint16
 
-func (fs StringFileSize) Bytes() []byte {
-	return []byte("0000")
+func (fs FileSize) Bytes() []byte {
+	return []byte(fmt.Sprintf("%4X", fs))
 }
 
 type TimeOfDay struct {
