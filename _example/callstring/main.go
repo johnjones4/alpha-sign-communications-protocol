@@ -57,7 +57,7 @@ func main() {
 
 	err = sign.Send(alphasign.WriteStringCommand{
 		FileLabel: '1',
-		FileData:  []byte("First Message"),
+		FileData:  []byte("Second Message"),
 	})
 	if err != nil {
 		panic(err)
