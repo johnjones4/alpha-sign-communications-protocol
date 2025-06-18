@@ -11,32 +11,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = sign.Send(&alphasign.WriteSpecialFunctionCommand{
-		Label: alphasign.ClearOrSetMemoryConfig,
-		Data: alphasign.MemoryConfiguration{
-			FileLabel:                'B',
-			FileType:                 alphasign.StringFile,
-			KeyboardProtectionStatus: 'L',
-			FileSize:                 alphasign.StringFileSize{},
-		},
-	})
-	if err != nil {
-		panic(err)
-	}
-	err = sign.Send(alphasign.WriteStringCommand{
-		FileLabel: 'B',
-		FileData:  append([]byte{0x15, 0x1C, 0x31}, []byte("Hello World File Test!")...),
-	})
-	if err != nil {
-		panic(err)
-	}
 	err = sign.Send(alphasign.WriteTextCommand{
 		FileLabel: 'A',
 		Mode: &alphasign.TextMode{
 			DisplayPosition: alphasign.Left,
 			ModeCode:        alphasign.Rotate,
 		},
-		Message: []byte{0x10, 'B'},
+		Message: []byte("Hello World!"),
 	})
 	if err != nil {
 		panic(err)
