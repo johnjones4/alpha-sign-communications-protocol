@@ -14,10 +14,20 @@ func main() {
 	err = sign.Send(&alphasign.WriteSpecialFunctionCommand{
 		Label: alphasign.ClearOrSetMemoryConfig,
 		Data: alphasign.MemoryConfiguration{
+			FileLabel:                'A',
+			FileType:                 alphasign.TextFile,
+			KeyboardProtectionStatus: 'L',
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+	err = sign.Send(&alphasign.WriteSpecialFunctionCommand{
+		Label: alphasign.ClearOrSetMemoryConfig,
+		Data: alphasign.MemoryConfiguration{
 			FileLabel:                'B',
 			FileType:                 alphasign.StringFile,
 			KeyboardProtectionStatus: 'L',
-			FileSize:                 alphasign.StringFileSize{},
 		},
 	})
 	if err != nil {
@@ -36,7 +46,7 @@ func main() {
 			DisplayPosition: alphasign.Left,
 			ModeCode:        alphasign.Rotate,
 		},
-		Message: []byte{0x10, 'B'},
+		Message: append([]byte("test"), 0x10, 'B'),
 	})
 	if err != nil {
 		panic(err)
