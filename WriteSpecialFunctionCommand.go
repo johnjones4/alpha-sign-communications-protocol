@@ -59,7 +59,8 @@ func (c DotsPictureSize) Bytes() []byte {
 type FileSize uint16
 
 func (fs FileSize) Bytes() []byte {
-	return []byte(fmt.Sprintf("%X", fs))
+	return []byte("0400")
+	// return []byte(fmt.Sprintf("%X", fs))
 }
 
 type TimeOfDay struct {
