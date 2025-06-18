@@ -12,6 +12,9 @@ func (c *WriteSpecialFunctionCommand) CommandCode() CommandCode {
 }
 
 func (c *WriteSpecialFunctionCommand) Bytes() []byte {
+	if c.Data == nil {
+		return c.Label
+	}
 	return append(c.Label, c.Data.Bytes()...)
 }
 
