@@ -18,7 +18,7 @@ func (c *WriteSpecialFunctionCommand) Bytes() []byte {
 	var out []byte
 	out = append(out, c.Label...)
 	for _, d := range c.Data {
-		out = append(c.Label, d.Bytes()...)
+		out = append(out, d.Bytes()...)
 	}
 	log.Println(string(out))
 	return out
